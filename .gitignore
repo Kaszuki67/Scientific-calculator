@@ -1,0 +1,75 @@
+```
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+dist/**
+
+# Vite specific
+.vite/
+.vite/deps/
+.vite/deps_temp_*
+
+# Environment
+.env
+.env.local
+.env.*
+
+# Logs
+*.log
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Editor specific
+.vscode/
+.idea/
+
+# Temporary files
+*.tmp
+*.swp
+*.swo
+
+# Coverage reports
+coverage/
+htmlcov/
+.coverage
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+
+# Distribution / packaging
+.Python
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Testing
+.pytest_cache/
+.hypothesis/
+
+# Local development
+.venv/
+venv/
+env/
+
+# Browserslist
+browserslist-stats.json
+
+# npm
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Miscellaneous
+*.min.js
+*.min.css
+
+```
