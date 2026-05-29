@@ -1,8 +1,5 @@
-import { useState, useEffect, useCallback, useRef } from 'react'
+import React, { useState, useEffect, useCallback, useRef } from 'react'
 import * as math from 'mathjs'
-
-// Create mathjs instance with high precision
-const mathjs = math.create({ number: 'BigNumber', precision: 14 })
 
 // Scientific calculator keypad layout (5 columns x 7 rows)
 const KEYBOARD_LAYOUT = [
@@ -105,12 +102,12 @@ export default function App() {
       // Wrap trig functions for DEG mode
       if (angleMode === 'DEG') {
         processedExpr = processedExpr
-          .replace(/sin\(([^)]+)\)/g, 'sin(($1) deg)')
-          .replace(/cos\(([^)]+)\)/g, 'cos(($1) deg)')
-          .replace(/tan\(([^)]+)\)/g, 'tan(($1) deg)')
-          .replace(/asin\(([^)]+)\)/g, 'radToDeg(asin($1))')
-          .replace(/acos\(([^)]+)\)/g, 'radToDeg(acos($1))')
-          .replace(/atan\(([^)]+)\)/g, 'radToDeg(atan($1))')
+          .replace(/sin\(([^)]+)\)/g, 'sin(($1) * pi / 180)')
+          .replace(/cos\(([^)]+)\)/g, 'cos(($1) * pi / 180)')
+          .replace(/tan\(([^)]+)\)/g, 'tan(($1) * pi / 180)')
+          .replace(/asin\(([^)]+)\)/g, '(asin($1) * 180 / pi)')
+          .replace(/acos\(([^)]+)\)/g, '(acos($1) * 180 / pi)')
+          .replace(/atan\(([^)]+)\)/g, '(atan($1) * 180 / pi)')
       }
       
       // Handle power operator ^
@@ -132,7 +129,7 @@ export default function App() {
       processedExpr = processedExpr.replace(/10\^x/g, 'pow(10,')
       processedExpr = processedExpr.replace(/x²/g, '^2')
       
-      const evalResult = mathjs.evaluate(processedExpr)
+      const evalResult = math.evaluate(processedExpr)
       
       if (typeof evalResult === 'number' || typeof evalResult === 'bigint') {
         return { result: formatResult(evalResult), error: null }
